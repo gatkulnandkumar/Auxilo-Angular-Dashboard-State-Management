@@ -1,0 +1,51 @@
+.card-container {
+    display: flex;
+    margin-left: 5%;
+    margin-bottom: 8px;
+    max-width: 400px;
+    width: 200%;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid rgb(27, 26, 26);  
+    box-shadow: 0px 2px 6px rgba(107, 99, 99, 0.1); /* Add a subtle box shadow */
+    transition: transform 0.3s, box-shadow 0.3s; /* Add smooth transition effects */
+  }
+
+  div.d-flex.justify-content-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 100vh; */
+  padding: 3%;
+  }
+
+  .card-container:hover {
+    transform: translateY(-4px); /* Add a slight hover effect by moving the card up */
+    box-shadow: 0px 6px 10px rgba(231, 17, 17, 0.1); /* Increase the box shadow on hover */
+  }
+  
+  mat-card {
+    background-color: #e8edf1; /* Set a light background color */
+    border-radius: 8px; /* Add rounded corners */
+    flex: content;
+    justify-content: center;
+  }
+  
+  mat-card-content,
+  mat-card-title {
+    color: #333; /* Set the text color */
+  }
+  
+  mat-card-content {
+    font-size: 16px; /* Increase the font size for the card content */
+    text-align: center;
+  }
+  
+  mat-card-title {
+    font-size: 20px; /* Increase the font size for the card title */
+    font-weight: bold; /* Add bold font weight to the title */
+    margin-bottom: 8px; /* Add some spacing below the title */
+    text-align: center;
+  }
+  

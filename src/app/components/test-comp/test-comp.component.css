@@ -1,0 +1,19 @@
+
+div.d-flex.justify-content-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    width: 80vh;
+    padding-right: 2%;
+    /* width: 100vh; */
+  }
+
+  .submit-btn{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px; 
+    }
+
+    

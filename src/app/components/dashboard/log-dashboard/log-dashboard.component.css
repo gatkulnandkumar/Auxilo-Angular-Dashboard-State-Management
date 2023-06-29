@@ -1,0 +1,62 @@
+.example-card {
+  margin-left: 5%;
+  max-width: 200px;
+  margin-bottom: 8px;
+}
+
+div.d-flex.justify-content-center {
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+  height: 100vh;
+  padding-right: 2%;
+  /* width: 100vh; */
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 5%;
+  margin-bottom: 8px;
+  max-width: 400px;
+  flex-basis: 25%;
+  width: 100%;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid rgb(27, 26, 26);
+  box-shadow: 0px 2px 6px rgba(107, 99, 99, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #e8edf1;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.card-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 6px 10px rgba(231, 17, 17, 0.1);
+}
+
+mat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+mat-card-content {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+mat-card-title {
+  font-size: 16px;
+}
+
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-around;  */
+}

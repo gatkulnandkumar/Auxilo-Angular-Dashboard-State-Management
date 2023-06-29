@@ -1,0 +1,327 @@
+<div class="main">
+    <mat-card style="border-radius: 40px;border: 1px solid rgb(114, 168, 248);">
+        <mat-card-header class="justify-content-center">
+            <mat-card-title>
+                <img src="./assets/AuxiloLogo.png" height="80%" width="80%" alt="Ambit">
+                <!-- <img src="./assets/ambit-small.png" height="100px" alt="Ambit"> -->
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="d-flex justify-content-center align-items-center">
+            <form [formGroup]="loginForm">
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field appearance="outline" style="margin-top: 2%; width: 300px; height: 60px;">
+                            <mat-label>Username</mat-label>
+                            <input matInput placeholder="Enter Username" formControlName="username" id="username"
+                                autocomplete="off" autofocus required="isuserNameGenerated ? true : false">
+                            <mat-error
+                                *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+                                <span *ngIf="loginForm.controls['username'].hasError('required')">Username is
+                                    required</span>
+                                <span *ngIf="loginForm.controls['username'].hasError('pattern')">Username should be
+                                    alphanumberic</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="margin-top: 2%;">
+                        <mat-form-field appearance="outline" style="margin-top: 3%; width: 300px; height: 60px;">
+                            <mat-label>Password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter Password"
+                                formControlName="password" required="ispasswordGenerated ? true : false">
+                            <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
+                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error
+                                *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+                                <span *ngIf="loginForm.controls['password'].hasError('required')">Password is
+                                    required</span>
+                                <span *ngIf="loginForm.controls['password'].hasError('minlength')">Password must be
+                                    6-digit number</span>
+                                <span *ngIf="loginForm.controls['password'].hasError('maxlength')">Password must be
+                                    6-digit number</span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="col-md-4 offset-4" style="margin-left: 40%;">
+                        <a mat-button (click)="openModalForgot()">Forgot your password?</a>
+                    </div> -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="submit-btn">
+
+                            <button mat-raised-button color="primary" [disabled]="!loginForm?.get('username')?.valid"
+                                (click)="Logging()">Login</button>
+                            <button mat-raised-button color="warn" (click)="loginCancel()">Cancel</button>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- 
+                <div class="row">
+                    <div class="col-md-12 offset-2" style="margin-top: 2%;">
+                        <label>Do you have account ?</label>
+                        <a mat-button (click)="openModal()">create a new account</a>
+                    </div>
+                </div> -->
+
+                <!-- //Model Sign Up  -->
+                <div class="modal-overlay" *ngIf="showModal">
+                    <div class="modal-container">
+                        <div class="modal-header" style="margin-left: 40%;">
+                            <h2>Signup</h2>
+                            <button class="close-button" (click)="closeModal()">X</button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form [formGroup]="signUpForm">
+                                <div class="row">
+                                    <div class="col-md-12 offset-2">
+                                        <mat-form-field appearance="outline"
+                                            style="margin-top: 2%; width: 300px; height: 60px;">
+                                            <mat-label>User Name</mat-label>
+                                            <input matInput placeholder="Enter Username" formControlName="uname"
+                                                id="uname" autocomplete="off" autofocus
+                                                required="isuserNameGenerated ? true : false">
+                                            <mat-error
+                                                *ngIf="signUpForm.controls['uname'].invalid && (signUpForm.controls['uname'].dirty || signUpForm.controls['uname'].touched)">
+                                                <span *ngIf="signUpForm.controls['uname'].hasError('required')">Username
+                                                    is
+                                                    required</span>
+                                                <span *ngIf="signUpForm.controls['uname'].hasError('pattern')">User name
+                                                    should be
+                                                    alphanumberic</span>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 offset-2" style="margin-top: 1%;">
+                                        <mat-form-field appearance="outline"
+                                            style="margin-top: 3%; width: 300px; height: 60px;">
+                                            <mat-label>Name</mat-label>
+                                            <input matInput placeholder="Enter Name" formControlName="name" id="name"
+                                                autocomplete="off" autofocus required="isNameGenerated ? true : false">
+                                            <mat-error
+                                                *ngIf="signUpForm.controls['name'].invalid && (signUpForm.controls['name'].dirty || signUpForm.controls['name'].touched)">
+                                                <span *ngIf="signUpForm.controls['name'].hasError('required')">Name
+                                                    is required</span>
+                                                <span *ngIf="signUpForm.controls['name'].hasError('pattern')"> Name
+                                                    should be
+                                                    alphanumberic</span>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 offset-2" style="margin-top: 5%;">
+                                        <mat-form-field appearance="outline"
+                                            style="margin-top: 1%; width: 300px; height: 60px;">
+                                            <mat-label>Password</mat-label>
+                                            <input matInput type="password" placeholder="Enter Password"
+                                                formControlName="pass" required="ispassGenerated ? true : false">
+                                            <!-- [type]="hide1 ? 'pass' : 'text'"? -->
+                                            <!-- <button mat-icon-button matSuffix type="button" (click)="hide1 = !hide1"
+                                                [attr.aria-label]="'Hide pass'" [attr.aria-pressed]="hide1">
+                                                <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                            </button> -->
+
+                                            <mat-error
+                                                *ngIf="signUpForm.controls['pass'].invalid && (signUpForm.controls['pass'].dirty || signUpForm.controls['pass'].touched)">
+                                                <span *ngIf="signUpForm.controls['pass'].hasError('required')">password
+                                                    is
+                                                    required</span>
+                                                <span *ngIf="signUpForm.controls['pass'].hasError('minlength')">password
+                                                    must be
+                                                    6-digit number</span>
+                                                <span *ngIf="signUpForm.controls['pass'].hasError('maxlength')">password
+                                                    must be
+                                                    6-digit number</span>
+                                                <div *ngIf="signUpForm.controls.pass.hasError('invalidPassword')"
+                                                    style="color: red">
+                                                    Must contain at least 1 uppercase letter, 1 lowercase letter, 1
+                                                    number, 1 special character, and be at least 6 characters long.
+                                                </div>
+
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 offset-2" style="margin-top: 5%;">
+                                        <mat-form-field appearance="outline"
+                                            style="margin-top: 3%; width: 300px; height: 60px;">
+                                            <mat-label>confirm password</mat-label>
+                                            <input matInput type="password" placeholder="Enter Password"
+                                                formControlName="cnfpassword"
+                                                required="iscnfpasswordGenerated ? true : false">
+                                            <!-- <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
+                                                [attr.aria-label]="'Hide cnfpasswordword'" [attr.aria-pressed]="hide">
+                                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                            </button> -->
+                                            <mat-error
+                                                *ngIf="signUpForm.controls['cnfpassword'].invalid && (signUpForm.controls['cnfpassword'].dirty || signUpForm.controls['cnfpassword'].touched)">
+                                                <span
+                                                    *ngIf="signUpForm.controls['cnfpassword'].hasError('required')">confirm
+                                                    password is
+                                                    required</span>
+                                                <span
+                                                    *ngIf="signUpForm.controls['cnfpassword'].hasError('minlength')">confirm
+                                                    password must be
+                                                    6-digit number</span>
+                                                <span
+                                                    *ngIf="signUpForm.controls['cnfpassword'].hasError('maxlength')">confirm
+                                                    password must be
+                                                    6-digit number</span>
+
+                                                <!-- <div *ngIf="signUpForm.controls.cnfpassword.hasError('invalidPassword')"
+                                                    style="color: red">
+                                                    Must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, 1 special character, and be at least 6 characters long.
+                                                    </div> -->
+
+                                                <div *ngIf="signUpForm.hasError('passwordMismatch') && signUpForm.controls.cnfpassword.dirty"
+                                                    style="color: red;">
+                                                    Passwords do not match.
+                                                </div>
+
+
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 offset-2" style="margin-top: 5%;">
+                                        <mat-form-field appearance="outline"
+                                            style="margin-top: 3%; width: 300px; height: 60px;">
+                                            <mat-label>Email</mat-label>
+                                            <input matInput placeholder="Enter Email" formControlName="email" id="email"
+                                                autocomplete="off" autofocus required="isemailGenerated ? true : false">
+                                            <mat-error
+                                                *ngIf="signUpForm.controls['email'].invalid && (signUpForm.controls['email'].dirty || signUpForm.controls['email'].touched)">
+                                                <span *ngIf="signUpForm.controls['email'].hasError('required')">email
+                                                    is required</span>
+                                                <span *ngIf="signUpForm.controls['email'].hasError('pattern')"> email
+                                                    should be
+                                                    alphanumberic</span>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 offset-2" style="margin-top: 5%;">
+                                        <mat-form-field appearance="outline"
+                                            style="margin-top: 3%; width: 300px; height: 60px;">
+                                            <mat-label>contact</mat-label>
+                                            <input matInput placeholder="Enter contact" formControlName="contact"
+                                                id="contact" autocomplete="off" autofocus
+                                                required="iscontacttGenerated ? true : false">
+                                            <mat-error
+                                                *ngIf="signUpForm.controls['contact'].invalid && (signUpForm.controls['contact'].dirty || signUpForm.controls['contact'].touched)">
+                                                <span
+                                                    *ngIf="signUpForm.controls['contact'].hasError('required')">contact
+                                                    is required</span>
+                                                <span *ngIf="signUpForm.controls['contact'].hasError('pattern')">
+                                                    contact
+                                                    should be
+                                                    number</span>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="row">
+                                    <div class="col-md-12 offset-2" style="margin-top: 5%;">
+                                    <mat-form-field>
+                                        <mat-label>Select an option</mat-label>
+                                        <mat-select [(value)]="selected">
+                                          <mat-option>None</mat-option>
+                                          <mat-option value="option1">Option 1</mat-option>
+                                          <mat-option value="option2">Option 2</mat-option>
+                                          <mat-option value="option3">Option 3</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                      
+                                      <p>You selected: {{selected}}</p>
+                                </div>
+                            </div> -->
+
+                                <div class="row">
+                                    <div class="col-md-8 offset-2" style="margin-top: 1%;">
+                                        <div class="submit-btn">
+                                            <button mat-raised-button color="primary"
+                                                [disabled]="!signUpForm?.get('uname')?.valid" (click)="onSignUp()">Sign
+                                                Up</button>
+                                            <button mat-raised-button color="warn"
+                                                (click)="loginCancel()">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- //Model Forgot Password OTP-->
+                <div class="modal-overlay" *ngIf="showModalForgotPass">
+                    <div class="modal-container">
+                        <div class="modal-header">
+                            <h2>Forgot Password Verification</h2>
+                            <button class="close-button" (click)="closeModal()">X</button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form [formGroup]="forgotOTPForm">
+                                <div class="row">
+                                    <div class="col-md-12 offset-2">
+                                        <mat-form-field appearance="outline"
+                                            style="margin-top: 3%; width: 300px; height: 60px;">
+                                            <mat-label>Email</mat-label>
+                                            <input matInput placeholder="Enter Email" formControlName="emailOTP"
+                                                id="emailOTP" autocomplete="off" autofocus
+                                                required="isemailGenerated ? true : false">
+                                            <mat-error
+                                                *ngIf="forgotOTPForm.controls['emailOTP'].invalid && (forgotOTPForm.controls['emailOTP'].dirty || forgotOTPForm.controls['emailOTP'].touched)">
+                                                <span
+                                                    *ngIf="forgotOTPForm.controls['emailOTP'].hasError('required')">email
+                                                    is required</span>
+                                                <span *ngIf="forgotOTPForm.controls['emailOTP'].hasError('pattern')">
+                                                    email
+                                                    should be
+                                                    alphanumberic</span>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-8 offset-2">
+                                        <div class="submit-btn">
+                                            <button mat-raised-button color="primary"
+                                                [disabled]="!forgotOTPForm?.get('emailOTP')?.valid"
+                                                (click)="sendOTPPassword()">Send
+                                                OTP</button>
+                                            <button mat-raised-button color="warn"
+                                                (click)="loginCancel()">Cancel</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,43 @@
+<!-- <button type="button" class="btn btn-primary">Primary</button> -->
+<div class="row">
+    <mat-toolbar color="Info" class="fixed-header">
+        <mat-toolbar-row>
+          <!-- <img src="assets/AuxiloLogo.png" alt="Company Logo" style="width: 18%; height: 95%; padding: auto;"> -->
+          <img src="https://www.auxilo.com/assets/images/Auxilo-logo-horizontal.svg" alt="Auxilo" width="160" height="40" class="h-auto">
+
+          <!-- <img src="./assets/Ambit_bg.png" width="160" height="40" class="h-auto" alt="Ambit"> -->
+          <span class="spacer"></span>
+          
+          <div class="col-md-12  d-flex justify-content-end" style="position: relative;
+          right: 220px;">
+            <section>
+              <div *ngIf = "loginCheck" class="example-button-row" style="padding-left: 20%;">
+                <button mat-icon-button (click)="logout()" matTooltip="Logout" [routerLink]="['/login']" >
+                  <!-- <mat-icon matTooltip="Logout">logout</mat-icon> -->
+                  <mat-icon>power_settings_new</mat-icon>
+                  <span>Logout</span>
+                </button>
+              </div>
+            </section>
+          </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+<!--     
+     <div class="col-md-12">
+        <div class="row justify-content-end">
+          <div class="col-md-2  d-flex justify-content-end" style="margin-right: 5%;">
+            <section>
+              <div class="example-button-row" style="padding-left: 40%;">
+                <button mat-icon-button (click)="logout()" [routerLink]="['/login']" >
+                  <mat-icon>power_settings_new</mat-icon>
+                  <span>Logout</span>
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+    </div> -->
+
+</div>
+
+<!-- <router-outlet></router-outlet> -->

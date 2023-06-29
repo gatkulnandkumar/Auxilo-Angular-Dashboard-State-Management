@@ -1,0 +1,16 @@
+<p>modal works!</p>
+
+
+<div id="modal-content-wrapper">
+    <header id="modal-header">
+      <h1 id="modal-title">Are you sure you want to {{action}}?</h1>
+      <!-- {{action}} - to print action name and Are you sure you want to is popup message  -->
+    </header>
+    <footer id="modal-footer">
+      <!-- <button  mat-raised-button id="modal-action-button" (click)="doAction()">{{action}}</button> -->
+      <button mat-raised-button id="modal-action-button" (click)="doAction()">Yes</button>
+      <!-- doAction method called for yes button and close popup on yes  -->
+      <button mat-raised-button id="modal-cancel-button" (click)="closeDialog()" #cancelButton>No</button>
+      <!-- closeDialog method called for no button and close popup on yes  -->
+    </footer>
+  </div>

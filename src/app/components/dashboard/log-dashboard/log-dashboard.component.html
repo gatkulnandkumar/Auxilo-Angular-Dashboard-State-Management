@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col">
+    <button mat-icon-button (click)="goBack()" style="margin-left: 25px;">
+      <!-- <mat-icon matTooltip="Logout">logout</mat-icon> -->
+      <mat-icon matTooltip="Back">arrow_back</mat-icon>
+    </button>
+  </div>
+  <div class="col" style="margin-top: 20px; margin-right: 14%;">
+    <span style="text-align: center; font-weight: bold;font-size: large;">Service Log Dashboard</span>
+  </div>
+
+  <div style="padding-right: 2%;">
+    <section class="d-flex justify-content-end">
+      <mat-form-field appearance="fill">
+        <mat-label>Search by api name</mat-label>
+        <input matInput [(ngModel)]="searchText" (ngModelChange)="applyFilter()">
+      </mat-form-field>
+    </section>
+    <div *ngIf="filteredData.length === 0 && searchText !== '' && searchPerformed"
+      style="text-align: center; margin-top: 10px;">
+      No matching data found.
+    </div>
+  </div>
+
+</div>
+
+<!-- Working code -->
+<!-- <div class="d-flex justify-content-center">
+  <div class="row" style="margin-top: 2%;">
+    <div class="col-md-3" *ngFor="let card of (searchText ? filteredData : cards) ; let i = index">
+      <div class="card-container" (click)="openData(i)">
+        <mat-card>
+          <mat-card-content>{{ card.parent | snakeCaseToCapitalCamelCase }}</mat-card-content>
+          <mat-card-title>{{ card.child }}</mat-card-title>
+        </mat-card>
+      </div>
+    </div>
+    <ngx-loading [show]="loading"></ngx-loading>
+  </div>
+</div> -->
+
+<div *ngFor="let parentC of (searchText ? filteredParentCards : parentCards); let i = index">
+  <h1 style="margin-left: 30px;">{{ parentC | snakeCaseToCapitalCamelCase }}</h1>
+  <div class="card-row" style="margin-top: 2%;">
+    <div *ngFor="let card of (searchText ? filteredData : cards); let j = index">
+      <div class="card-container" *ngIf="card.parent === parentC" (click)="openData(j)"
+        [ngClass]="{'active-card': card.data.apiStatus === 'active', 'inactive-card': card.data.apiStatus !== 'active'}">
+        <mat-card>
+          <mat-card-content>{{ card.parent | snakeCaseToCapitalCamelCase }}</mat-card-content>
+          <mat-card-title>{{ card.child }}</mat-card-title>
+
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

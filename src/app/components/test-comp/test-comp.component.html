@@ -1,0 +1,54 @@
+<h2 style="text-align: center; margin-top: 20px;">Update {{serviceType}}</h2>
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 50px;">
+  <form [formGroup]="form">
+    <div *ngFor="let controlName of form.controls | keyvalue">
+      <mat-form-field appearance="outline" style="margin-top: 1%; width: 700px; height: 80px;">
+        <mat-label>{{ controlName.key }}</mat-label>
+        <input matInput type="text" [formControlName]="controlName.key" [pattern]="regexPatterns[controlName.key]"
+          placeholder="Please enter {{controlName.key}}" [errorStateMatcher]="matcher" required>
+        <mat-error *ngIf="isInvalid(controlName.key)">
+          Invalid {{ controlName.key }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="submit-btn" style="margin-left: 8%; margin-right: 15%;">
+          <button mat-raised-button color="primary" (click)="openDialog('update', {})">Update</button>
+          <button   mat-raised-button color="warn" (click)="goBack()" [routerLink]="['/dashboard']" style="margin-left: 25px;">
+            Back
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<h2 style="text-align: center; margin-top: 20px;">{{serviceType}} service logs</h2>
+<div class="col-md-12" style="padding-left: 10px; margin-right: 10px;">
+<table class="table table-striped table-bordered table-sm row-border hover" id="datatableexample">
+  <thead>
+    <tr>
+      <th>Table_name</th>
+      <th>Service_type</th>
+      <th>Key</th>
+      <th>Old_value</th>
+      <th>New_value</th>
+      <th>Updated_by</th>
+      <th>Updated_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let group of auditLogs">
+      <td>{{group.table_name}}</td>
+      <td>{{group.service_type}}</td>
+      <td>{{group.key}}</td>
+      <td>{{group.old_value}}</td>
+      <td>{{group.new_value}}</td>
+      <td>{{group.updated_by}}</td>
+      <td>{{group.updated_date}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
